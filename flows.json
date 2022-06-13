@@ -1,0 +1,220 @@
+[
+    {
+        "id": "9b96cab136dcd0c7",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ca0478062da64a47",
+        "type": "json",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "76da978839de0c82",
+                "9f4b93ecd98eb0a9"
+            ]
+        ]
+    },
+    {
+        "id": "76da978839de0c82",
+        "type": "debug",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0680c03001f99671",
+        "type": "mqtt in",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "topic": "codigoIoT/g7/mosquitto/msg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "8750f457c524b160",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "ca0478062da64a47"
+            ]
+        ]
+    },
+    {
+        "id": "9f4b93ecd98eb0a9",
+        "type": "function",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 120,
+        "wires": [
+            [
+                "74420ab82ccdbdd6"
+            ]
+        ]
+    },
+    {
+        "id": "74420ab82ccdbdd6",
+        "type": "ui_chart",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "group": "90d12ff6e6763665",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "45",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8626a52ff178e2be",
+        "type": "mqtt out",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "topic": "codigoIoT/g7/mosquitto/msg",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8750f457c524b160",
+        "x": 440,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "cd0b84a3290d8511",
+        "type": "inject",
+        "z": "9b96cab136dcd0c7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "8626a52ff178e2be"
+            ]
+        ]
+    },
+    {
+        "id": "8750f457c524b160",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.61.99",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "90d12ff6e6763665",
+        "type": "ui_group",
+        "name": "Grupo Grafica",
+        "tab": "d050bcaa511c0c92",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d050bcaa511c0c92",
+        "type": "ui_tab",
+        "name": "Flow 4",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
